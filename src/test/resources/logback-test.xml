@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%highlight(%.-1level) %d{HH:mm:ss.SSS} [%thread] - %cyan(%-22.22logger{20}) : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <logger name="ch.qos.logback" level="ERROR" />
+
+    <logger name="next.jdbc" level="TRACE"/>
+    <logger name="hugsql" level="TRACE"/>
+    <logger name="base" level="DEBUG"/>
+    <logger name="calc" level="DEBUG"/>
+
+    <logger name="org.eclipse.jetty" level="INFO"/>
+
+</configuration>

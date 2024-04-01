@@ -1,0 +1,9 @@
+{:postgres {:database-name "test"
+            :username      "test"
+            :password      "test"}
+
+ :dev-mode true
+
+ :feature  {:database {:postgres                {:turn-on true}
+                       :print-queries           {:turn-on true}
+                       :run-migrations-on-start {:turn-on true}}}}

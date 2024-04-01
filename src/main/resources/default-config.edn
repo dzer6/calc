@@ -1,0 +1,18 @@
+{:postgres {:server-name              "localhost"
+            :port-number              15453
+            :database-name            "postgres"
+            :username                 "postgres"
+            :password                 "postgres"
+            :leak-detection-threshold 0}
+
+ :dev-mode false
+
+ :web      {:server {:host "0.0.0.0"
+                     :port 8080}}
+
+ :cors     {:allowed-origins "*"
+            :allowed-headers "X-Requested-With,Content-Type,Cache-Control,Origin,Accept,Authorization,traceparent"}
+
+ :feature  {:database {:postgres                {:turn-on true}
+                       :print-queries           {:turn-on true}
+                       :run-migrations-on-start {:turn-on true}}}}

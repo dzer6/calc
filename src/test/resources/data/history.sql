@@ -1,0 +1,10 @@
+INSERT INTO calc_history (input, output) VALUES ('1 + 1', '2');
+INSERT INTO calc_history (input, output) VALUES ('2 * 2', '4');
+INSERT INTO calc_history (input, output) VALUES ('1 - 3', '-2');
+INSERT INTO calc_history (input, output) VALUES ('4 / 2', '2');
+INSERT INTO calc_history (input, output) VALUES ('5 + 3 * 2', '11');
+INSERT INTO calc_history (input, output) VALUES ('(1 + 2) * 3', '9');
+INSERT INTO calc_history (input, output) VALUES ('7 - 2 / 2', '6');
+INSERT INTO calc_history (input, output) VALUES ('8 * 2 + 1', '17');
+INSERT INTO calc_history (input, output) VALUES ('9 / 3 - 1', '2');
+INSERT INTO calc_history (input, output) VALUES ('10 + 2 * (3 - 1)', '14');

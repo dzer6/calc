@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <variable name="DEV_MODE" value="${DEV_MODE:-false}"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <if condition="${DEV_MODE}">
+            <then>
+                <encoder>
+                    <charset>UTF-8</charset>
+                    <pattern>%highlight(%.-1level) %d{HH:mm:ss.SSS} [%thread] - %cyan(%-22.22logger{20}) : %msg%n</pattern>
+                </encoder>
+            </then>
+            <else>
+                <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+                    <providers>
+                        <timestamp>
+                            <timeZone>UTC</timeZone>
+                        </timestamp>
+                        <message/>
+                        <nestedField>
+                            <fieldName>mdc</fieldName>
+                            <providers>
+                                <mdc/>
+                            </providers>
+                        </nestedField>
+                        <stackTrace>
+                            <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                                <maxDepthPerThrowable>90</maxDepthPerThrowable>
+                                <maxLength>2048</maxLength>
+                                <rootCauseFirst>true</rootCauseFirst>
+                            </throwableConverter>
+                        </stackTrace>
+                        <pattern>
+                            <pattern>
+                                {
+                                "logger": "%logger",
+                                "level": "%level",
+                                "thread": "%thread",
+                                "message": "%message"
+                                }
+                            </pattern>
+                        </pattern>
+                    </providers>
+                </encoder>
+            </else>
+        </if>
+    </appender>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <logger name="ch.qos.logback" level="ERROR"/>
+
+    <logger name="next.jdbc" level="TRACE"/>
+    <logger name="hugsql" level="TRACE"/>
+    <logger name="base" level="DEBUG"/>
+    <logger name="calc" level="DEBUG"/>
+    <logger name="org.eclipse.jetty" level="INFO"/>
+
+</configuration>

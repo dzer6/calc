@@ -1,0 +1,24 @@
+version: "3.0"
+services:
+
+  calc_postgres:
+    image: "postgres:16-alpine"
+    command: postgres -c shared_preload_libraries='pg_stat_statements' -c pg_stat_statements.track=all -c log_statement=all
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - calc_postgres_data:/var/lib/postgresql/data
+    networks:
+      - calc
+    ports:
+      - "15453:5432"
+
+volumes:
+  calc_postgres_data:
+
+networks:
+  calc:
+    driver: bridge
