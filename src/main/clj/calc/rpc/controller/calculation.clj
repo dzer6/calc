@@ -54,5 +54,5 @@
       (log/error e)
       (error/fire :error-type :resource/bad-request
                   :cause e
-                  :message "Unable to find vehicles"))))
+                  :message "Unable to find expressions"))))
 
