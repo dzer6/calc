@@ -29,20 +29,6 @@
                :consumes ["application/json"]
                :produces ["application/json"]}}}
 
-      (sw/GET "/health/live" []
-        :summary "Check liveness probe"
-        :return health/HealthCheckResponse
-        (health/liveness-handler))
-
-      (sw/GET "/health/ready" []
-        :summary "Check readiness probe"
-        :return health/HealthCheckResponse
-        (health/readiness-handler))
-
-      (sw/GET "/" []
-        :summary "Redirect to Swagger UI"
-        (ring.http/moved-permanently "/api-docs"))
-
       (sw/POST "/calc" []
         :body [body calculation/EvaluateExpressionRequest]
         :return calculation/EvaluateExpressionResponse
@@ -59,6 +45,20 @@
         :responses {400 {:schema ErrorResponse :description "Wrong input data"}
                     500 {:schema ErrorResponse :description "Internal issue"}}
         (ring.http/ok (calculation/obtain-past-evaluations offset limit)))
+
+      (sw/GET "/health/live" []
+        :summary "Check liveness probe"
+        :return health/HealthCheckResponse
+        (health/liveness-handler))
+
+      (sw/GET "/health/ready" []
+        :summary "Check readiness probe"
+        :return health/HealthCheckResponse
+        (health/readiness-handler))
+
+      (sw/GET "/" []
+        :summary "Redirect to Swagger UI"
+        (ring.http/moved-permanently "/api-docs"))
 
       (sw/undocumented
         (route/not-found "Not Found")))))

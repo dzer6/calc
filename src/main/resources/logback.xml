@@ -8,7 +8,7 @@
             <then>
                 <encoder>
                     <charset>UTF-8</charset>
-                    <pattern>%highlight(%.-1level) %d{HH:mm:ss.SSS} [%thread] - %cyan(%-22.22logger{20}) : %msg%n</pattern>
+                    <pattern>%highlight(%.-1level) %d{HH:mm:ss.SSS} [%.-7thread] - %cyan(%-22.22logger{20}) : %msg%n</pattern>
                 </encoder>
             </then>
             <else>
